@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exaltus World - Professional Call Center Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --primary-green: #059669;
+            --secondary-green: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--secondary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-green);
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            color: var(--white);
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--secondary-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--primary-green) 100%);
+            color: var(--white);
+            padding: 150px 2rem 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat;
+            background-size: cover;
+            opacity: 0.3;
+            top: 0;
+            left: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            background: var(--secondary-green);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #059669;
+        }
+
+        /* Languages Banner */
+        .languages {
+            background: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .languages h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lang-flags {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .lang-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .flag {
+            font-size: 3rem;
+        }
+
+        .lang-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-green);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .why-icon {
+            font-size: 2rem;
+            color: var(--secondary-green);
+            flex-shrink: 0;
+        }
+
+        .why-content h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .why-content p {
+            color: #6b7280;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-green);
+        }
+
+        .contact-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-card a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: var(--secondary-green);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .lang-flags {
+                gap: 1.5rem;
+            }
+
+            .flag {
+                font-size: 2rem;
+            }
+        }
+
+        /* Language Content */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span>📞</span> Exaltus World
+            </div>
+            <ul class="nav-links">
+                <li><a href="#services" class="nav-services">Services</a></li>
+                <li><a href="#why-us" class="nav-why">Why Us</a></li>
+                <li><a href="#contact" class="nav-contact">Contact</a></li>
+            </ul>
+            <div class="lang-selector">
+                <button class="lang-btn active" onclick="changeLang('en')">EN</button>
+                <button class="lang-btn" onclick="changeLang('fr')">FR</button>
+                <button class="lang-btn" onclick="changeLang('es')">ES</button>
+                <button class="lang-btn" onclick="changeLang('ht')">HT</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - English -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="lang-content active" id="hero-en">
+                <h1>Professional Call Center Services</h1>
+                <p>Based in Hinche, Haiti - We deliver exceptional customer service in 4 languages</p>
+                <a href="#contact" class="cta-button">Get Started Today</a>
+            </div>
+            <div class="lang-content" id="hero-fr">
+                <h1>Services de Centre d'Appels Professionnels</h1>
+                <p>Basé à Hinche, Haïti - Nous offrons un service client exceptionnel en 4 langues</p>
+                <a href="#contact" class="cta-button">Commencez Aujourd'hui</a>
+            </div>
+            <div class="lang-content" id="hero-es">
+                <h1>Servicios Profesionales de Call Center</h1>
+                <p>Con sede en Hinche, Haití - Ofrecemos servicio al cliente excepcional en 4 idiomas</p>
+                <a href="#contact" class="cta-button">Empiece Hoy</a>
+            </div>
+            <div class="lang-content" id="hero-ht">
+                <h1>Sèvis Call Center Pwofesyonèl</h1>
+                <p>Baze nan Hinche, Ayiti - Nou bay sèvis kliyan eksepsyonèl nan 4 lang</p>
+                <a href="#contact" class="cta-button">Kòmanse Jodi a</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Banner -->
+    <section class="languages">
+        <h3 class="lang-title-en lang-content active">We Speak Your Language</h3>
+        <h3 class="lang-title-fr lang-content">Nous Parlons Votre Langue</h3>
+        <h3 class="lang-title-es lang-content">Hablamos Su Idioma</h3>
+        <h3 class="lang-title-ht lang-content">Nou Pale Lang Ou</h3>
+        <div class="lang-flags">
+            <div class="lang-item">
+                <div class="flag">🇺🇸</div>
+                <div class="lang-name">English</div>
+            </div>
+            <div class="lang-item">
+                <div class="flag">🇫🇷</div>
+                <div class="lang-name">Français</div>
+            </div>
+            <div class="lang-item">
+                <div class="flag">🇪🇸</div>
+                <div class="lang-name">Español</div>
+            </div>
+            <div class="lang-item">
+                <div class="flag">🇭🇹</div>
+                <div class="lang-name">Kreyòl</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-content active" id="services-title-en">Our Services</span>
+                <span class="lang-content" id="services-title-fr">Nos Services</span>
+                <span class="lang-content" id="services-title-es">Nuestros Servicios</span>
+                <span class="lang-content" id="services-title-ht">Sèvis Nou Yo</span>
+            </h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <div class="lang-content active" id="service1-en">
+                        <h3>Customer Support</h3>
+                        <p>24/7 multilingual customer support to keep your clients satisfied and engaged</p>
+                    </div>
+                    <div class="lang-content" id="service1-fr">
+                        <h3>Support Client</h3>
+                        <p>Support client multilingue 24/7 pour satisfaire et engager vos clients</p>
+                    </div>
+                    <div class="lang-content" id="service1-es">
+                        <h3>Atención al Cliente</h3>
+                        <p>Soporte al cliente multilingüe 24/7 para mantener satisfechos a sus clientes</p>
+                    </div>
+                    <div class="lang-content" id="service1-ht">
+                        <h3>Sipò Kliyan</h3>
+                        <p>Sipò kliyan 24/7 nan plizyè lang pou satisfè ak angaje kliyan ou yo</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📞</div>
+                    <div class="lang-content active" id="service2-en">
+                        <h3>Inbound & Outbound Calls</h3>
+                        <p>Professional call handling for sales, surveys, and customer outreach</p>
+                    </div>
+                    <div class="lang-content" id="service2-fr">
+                        <h3>Appels Entrants & Sortants</h3>
+                        <p>Gestion professionnelle des appels pour ventes, sondages et contact client</p>
+                    </div>
+                    <div class="lang-content" id="service2-es">
+                        <h3>Llamadas Entrantes y Salientes</h3>
+                        <p>Manejo profesional de llamadas para ventas, encuestas y alcance al cliente</p>
+                    </div>
+                    <div class="lang-content" id="service2-ht">
+                        <h3>Apèl Ki Antre & Ki Soti</h3>
+                        <p>Jesyon pwofesyonèl apèl pou vant, sondaj ak kontakte kliyan</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛠️</div>
+                    <div class="lang-content active" id="service3-en">
+                        <h3>Technical Support</h3>
+                        <p>Expert technical assistance to resolve customer issues quickly and efficiently</p>
+                    </div>
+                    <div class="lang-content" id="service3-fr">
+                        <h3>Support Technique</h3>
+                        <p>Assistance technique experte pour résoudre rapidement les problèmes clients</p>
+                    </div>
+                    <div class="lang-content" id="service3-es">
+                        <h3>Soporte Técnico</h3>
+                        <p>Asistencia técnica experta para resolver problemas de clientes rápidamente</p>
+                    </div>
+                    <div class="lang-content" id="service3-ht">
+                        <h3>Sipò Teknik</h3>
+                        <p>Asistans teknik ekspè pou rezoud pwoblèm kliyan rapid ak efikas</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <div class="lang-content active" id="service4-en">
+                        <h3>Sales & Marketing</h3>
+                        <p>Drive revenue growth with our experienced sales and marketing teams</p>
+                    </div>
+                    <div class="lang-content" id="service4-fr">
+                        <h3>Ventes & Marketing</h3>
+                        <p>Augmentez vos revenus avec nos équipes expérimentées en ventes et marketing</p>
+                    </div>
+                    <div class="lang-content" id="service4-es">
+                        <h3>Ventas y Marketing</h3>
+                        <p>Impulse el crecimiento con nuestros equipos expertos en ventas y marketing</p>
+                    </div>
+                    <div class="lang-content" id="service4-ht">
+                        <h3>Vant & Maketing</h3>
+                        <p>Ogmante revni ou ak ekip nou ki gen eksperyans nan vant ak maketing</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">✉️</div>
+                    <div class="lang-content active" id="service5-en">
+                        <h3>Email & Chat Support</h3>
+                        <p>Multi-channel support including email and live chat services</p>
+                    </div>
+                    <div class="lang-content" id="service5-fr">
+                        <h3>Support Email & Chat</h3>
+                        <p>Support multicanal incluant services email et chat en direct</p>
+                    </div>
+                    <div class="lang-content" id="service5-es">
+                        <h3>Soporte Email y Chat</h3>
+                        <p>Soporte multicanal incluyendo servicios de email y chat en vivo</p>
+                    </div>
+                    <div class="lang-content" id="service5-ht">
+                        <h3>Sipò Email & Chat</h3>
+                        <p>Sipò multi-kanal ki gen ladan sèvis email ak chat an dirèk</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📅</div>
+                    <div class="lang-content active" id="service6-en">
+                        <h3>Appointment Setting</h3>
+                        <p>Efficient scheduling and appointment management for your business</p>
+                    </div>
+                    <div class="lang-content" id="service6-fr
